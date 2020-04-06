@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ofertes[0].titol}}{% endblock %}
+
+
+{% block body %}
+        
+        <h1>Oferta de "{{ofertes[0].titol}}"</h1>
+        <div class="container py-5">  
+        <h3>{{ofertes[0].titol}}</h3>  
+        <div class="card" style="width:250px;">              
+            <div class="card-body">  
+                <p class="card-text">{{ofertes[0].descripcio}}</p>
+                <p class="card-text">{{ofertes[0].dataPub | date('Y-m-d')}}</p>
+                <a href="#" >{{ ofertes[0].empresa.nom }}</a>
+                <br>
+                <a href="/oferta" class="btn btn-primary">Atrás</a>
+            </div>  
+        </div>        
+    </div>  
+        <script>
+
+           
+
+        </script>
+{% endblock %}

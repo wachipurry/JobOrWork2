@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ofertes[0].titol}}{% endblock %}
+
+
+{% block body %}
+        
+        <h1>Oferta de "{{ofertes[0].titol}}"</h1>
+        <table id="table" class="table">
+        <tr class="table-active">
+            <th>Titol</th>
+            <th>Descripcio</th>
+            <th>Data</th>
+            <th>Empresa</th>
+        </tr>
+        <tbody>
+        {% for oferta in ofertes %}
+            <tr id="{{oferta.id}}">
+                <td id="titol">{{ oferta.titol }}</td>
+                <td id="descripcio">{{oferta.descripcio }}</td>
+                <td> {{oferta.dataPub | date('Y-m-d')}}</td>
+                <td id="empresa" idEmpresa="{{oferta.empresa.id}}"><a href="#">{{ oferta.empresa.nom }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+       
+       <div id="form">
+        </div>
+        <script>
+
+                $("#empresa").click(function(){
+                    var id=$('#empresa').attr("idEmpresa"); 
+                    generarFormularioOculto(id);
+                });
+                 function generarFormularioOculto(id){
+                    let htmlOculto=`<form method="POST" style="display:none" action="/empresa/detall"> <input name="id" type="text" value="${id}"/>  <button id="envia" type="submit"></button></form>`;
+                    document.getElementById("form").innerHTML=htmlOculto;
+                    document.getElementById("envia").click();
+                }
+
+        </script>
+{% endblock %}

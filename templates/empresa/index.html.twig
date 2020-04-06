@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empreses{% endblock %}
+
+
+{% block body %}
+        
+        <h1>EMPRESES</h1>
+        <table id="table" class="table">
+        {% for empresa in empreses %}
+            <tr>
+                <td id="{{empresa.id}}">                
+                    <img width="50px" heigth="50px" src="logos/{{empresa.logo}}" />  
+                    {{ empresa.nom }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        <div id="form">
+        </div>
+        {% include 'formRedirection.html.twig' %}
+        <script>
+            function generarFormularioOculto(id){
+                let htmlOculto=`<form method="POST" style="display:none" action="/empresa/detall"> <input name="id" type="text" value="${id}"/>  <button id="envia" type="submit"></button></form>`;
+                document.getElementById("form").innerHTML=htmlOculto;
+                document.getElementById("envia").click();
+            }
+        </script>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ofertes{% endblock %}
+
+
+{% block body %}
+        
+        <h1>OFERTES</h1>
+        <table id="table" class="table">
+        {% for oferta in ofertes %}
+            <tr>
+                <td id="{{oferta.id}}">{{ oferta.titol }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% include 'formRedirection.html.twig' %}
+        <script>
+            function generarFormularioOculto(id){
+                let htmlOculto=`<form method="POST" style="display:none" action="/oferta/detall"> <input name="id" type="text" value="${id}"/>  <button id="envia" type="submit"></button></form>`;
+                document.getElementById("form").innerHTML=htmlOculto;
+                document.getElementById("envia").click();
+
+            }
+        </script>
+{% endblock %}
+

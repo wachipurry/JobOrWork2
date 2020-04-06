@@ -1,0 +1,12 @@
+
+    <div id="form">
+    </div>
+    <script>
+
+            $("#table").on('click','td',function(){
+                var currentRow=$(this).closest("tr"); 
+                var id=currentRow.find("td:eq(0)").attr("id"); 
+                generarFormularioOculto(id);
+            });
+
+    </script>
