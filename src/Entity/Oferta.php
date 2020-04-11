@@ -35,6 +35,7 @@ class Oferta
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Empresa", inversedBy="ofertas")
+     * @ORM\JoinColumn(name="ofertas", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $empresa;
 

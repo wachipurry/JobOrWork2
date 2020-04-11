@@ -27,7 +27,7 @@ class OfertaType extends AbstractType
                 ->add('empresa', EntityType::class, [
                     'class' => Empresa::class,
                     'choice_label' => function ($empresa) {
-                        return $empresa->getId();
+                        return $empresa->getNom();
                     }
                 ]);
         

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empreses{% endblock %}
+
+
+{% block body %}
+        
+        <h1>ADMINISTRACIO D'EMPRESES</h1>
+        <table id="table" class="table">
+         <tr class="table-active">
+            <th>Nom</th>
+            <th>Correu</th>
+            <th>Tipus</th>
+            <th>Ofertes</th>
+            <th>
+                <a class="btn btn-success" href="{{path("admin_empresa_add")}}">Afegir</a>
+            </th>
+        </tr>
+        <tbody>
+         {% for empresa in empreses %}
+            <tr id="{{empresa.id}}">
+                <td ><img width="50px" alt="Img " heigth="50px" src="../logos/{{empresa.logo}}" /> {{ empresa.nom }}</td>
+                <td >{{empresa.correu }}</td>
+                <td> {{empresa.tipus}}</td>
+                <td>
+                    {% if empresa.ofertas %}
+                        <select class="btn btn-secondary" id="selector{{empresa.id}}">
+                            {% for oferta in empresa.ofertas %}
+                                <option  id="{{oferta.id}}" value="{{oferta.titol}}">{{oferta.titol}}</option>
+                            {% endfor %}
+                        </select>
+                        <button onclick="generarFormularioOculto({{empresa.id}})" class="btn btn-primary">Veure oferta</button>
+                    {% endif%}
+                </td>
+                <td>
+                        <a class="btn btn-secondary" href="{{path("admin_empresa_modif", {'id' : empresa.id})}}">Modifica</a>
+                        <a class="btn btn-danger"href="{{path("admin_empresa_delete", {'id' : empresa.id})}}">Eliminar</a>
+
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <div id="form">
+        </div>
+        <script>
+                
+                 function generarFormularioOculto(selectorId){
+                    let id= $("#selector"+selectorId+" :selected").attr("id");
+                    if(id!="undefined" && id!=null){
+                        let htmlOculto=`<form method="POST" style="display:none" action="/oferta/detall"> <input name="id" type="text" value="${id}"/>  <button id="envia" type="submit"></button></form>`;
+                        document.getElementById("form").innerHTML=htmlOculto;
+                        document.getElementById("envia").click();
+                    }
+                   
+                }
+        </script>
+{% endblock %}
+
