@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ofertes[0].titol}}{% endblock %}
+{% block title %}{{oferta.titol}}{% endblock %}
 
 
 {% block body %}
         
-        <h1>Oferta de "{{ofertes[0].titol}}"</h1>
+        <h1>Oferta de "{{oferta.titol}}"</h1>
         <table id="table" class="table">
         <tr class="table-active">
             <th>Titol</th>
@@ -14,14 +14,12 @@
             <th>Empresa</th>
         </tr>
         <tbody>
-        {% for oferta in ofertes %}
             <tr id="{{oferta.id}}">
                 <td id="titol">{{ oferta.titol }}</td>
                 <td id="descripcio">{{oferta.descripcio }}</td>
                 <td> {{oferta.dataPub | date('Y-m-d')}}</td>
                 <td id="empresa" idEmpresa="{{oferta.empresa.id}}"><a href="#">{{ oferta.empresa.nom }}</a></td>
             </tr>
-        {% endfor %}
         </tbody>
         </table>
        

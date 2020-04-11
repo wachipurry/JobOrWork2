@@ -32,9 +32,10 @@ class OfertaController extends AbstractController
         if (isset($_POST["id"])) {  
             $id=$_POST["id"];
             $entityManager=$this->getDoctrine()->getManager();
-            $ofertaDetall=  $entityManager->getRepository(Oferta::class)->findById($id);
-      
-            return $this->render('oferta/detall/index.html.twig', ['ofertes' => $ofertaDetall]);
+            $ofertaDetall=  $entityManager->getRepository(Oferta::class)->findOneBy(array(
+                'id'  => $id
+            ));
+            return $this->render('oferta/detall/index.html.twig', ['oferta' => $ofertaDetall]);
         }
     }
          

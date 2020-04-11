@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{empreses[0].nom}}{% endblock %}
+{% block title %}{{empresa.nom}}{% endblock %}
 
 
 {% block body %}
         
-        <h1>Empresa {{empreses[0].nom}}</h1>
+        <h1>Empresa {{empresa.nom}}</h1>
         <table id="table" class="table">
         <tr class="table-active">
             <th>Nom</th>
@@ -14,7 +14,7 @@
             <th>Ofertes</th>
         </tr>
         <tbody>
-        {% for empresa in empreses %}
+      
             <tr id="{{empresa.id}}">
                 <td id="nom"> <img width="50px" heigth="50px" src="../logos/{{empresa.logo}}" /> {{ empresa.nom }}</td>
                 <td id="correu">{{empresa.correu }}</td>
@@ -25,17 +25,17 @@
                             <option  id="{{oferta.id}}" value="{{oferta.titol}}">{{oferta.titol}}</option>
                         {% endfor %}
                     </select>
+                    <button id="busca" class="btn btn-primary">Veure oferta</button>
                 </td>
             </tr>
-        {% endfor %}
+       
         </tbody>
         </table>
         <div id="form">
         </div>
         <script>
-                $("#ofertes").change(function(){
-                    var id=$("option:selected", this).attr("id");
-                    console.log(id);
+                $("#busca").click(function(){
+                    var id=$("option:selected", "#ofertes").attr("id");
                     generarFormularioOculto(id);
                 });
                  function generarFormularioOculto(id){

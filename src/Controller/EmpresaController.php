@@ -30,9 +30,11 @@ class EmpresaController extends AbstractController
         if (isset($_POST["id"])) {  
             $id=$_POST["id"];
             $entityManager=$this->getDoctrine()->getManager();
-            $empresaDetall=  $entityManager->getRepository(Empresa::class)->findById($id);
+            $empresaDetall=  $entityManager->getRepository(Empresa::class)->findOneBy(array(
+                'id'  => $id
+            ));
       
-            return $this->render('empresa/detall/index.html.twig', ['empreses' => $empresaDetall]);
+            return $this->render('empresa/detall/index.html.twig', ['empresa' => $empresaDetall]);
         }
     }
 }

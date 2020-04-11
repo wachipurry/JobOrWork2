@@ -41,6 +41,7 @@ class Oferta
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Candidat", mappedBy="oferta")
      */
+    
     private $ofertaCandidat;
 
     public function __construct()
@@ -51,6 +52,11 @@ class Oferta
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?string $id):self{
+        $this->id=$id;
+        return $this;
     }
 
     public function getDescripcio(): ?string

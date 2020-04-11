@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ofertes{% endblock %}
+
+
+{% block body %}
+        
+        <h1>ADMINISTRACIO D'OFERTES</h1>
+        <table id="table" class="table">
+         <tr class="table-active">
+            <th>Titol</th>
+            <th>Descripcio</th>
+            <th>Data</th>
+            <th>Empresa</th>
+            <th>
+                <a class="btn btn-success" href="{{path("admin_oferta_add")}}">Afegir</a>
+            </th>
+        </tr>
+        <tbody>
+         {% for oferta in ofertes %}
+            <tr id="{{oferta.id}}">
+                <td >{{ oferta.titol }}</td>
+                <td >{{oferta.descripcio }}</td>
+                <td> {{oferta.dataPub | date('Y-m-d')}}</td>
+                <td  idEmpresa="{{oferta.empresa.id}}"><a href="#">{{ oferta.empresa.nom }}</a></td>
+                <td>
+                        <a class="btn btn-secondary" href="{{path("admin_oferta_modif", {'id' : oferta.id})}}">Modifica</a>
+                        <a class="btn btn-danger"href="{{path("admin_oferta_delete", {'id' : oferta.id})}}">Eliminar</a>
+
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+         <div id="form">
+        </div>
+        <script>
+            $("#table").on('click','td',function(){
+                var currentRow=$(this).closest("tr"); 
+                generarFormularioOculto( currentRow.attr("id"));
+            });
+
+            function generarFormularioOculto(id){
+                let htmlOculto=`<form method="POST" style="display:none" action="/empresa/detall"> <input name="id" type="text" value="${id}"/>  <button id="envia" type="submit"></button></form>`;
+                document.getElementById("form").innerHTML=htmlOculto;
+                document.getElementById("envia").click();
+            }
+        </script>
+{% endblock %}
+

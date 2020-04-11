@@ -38,6 +38,7 @@ class Candidat
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Oferta", inversedBy="ofertaCandidat")
+     * @ORM\JoinColumn(name="ofertaCandidat", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $oferta;
 
