@@ -21,9 +21,9 @@ class EmpresaType extends AbstractType
             ->add('correu', EmailType::class)
             ->add('tipus',TextType::class)
             ->add('logo', TextType::class, [
-                'data' => "logo0.png"
+                'empty_data' => "logo0.png"
             ]);
-                ;
+            
         
     }
 
